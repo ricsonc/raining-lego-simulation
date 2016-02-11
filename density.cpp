@@ -1,8 +1,10 @@
 #include <array>
 #include <cstdlib>
 #include <cstdio>
+#include <algorithm>
 
-#define N 1000;
+//#define N 1000;
+const std::size_t N = 100;
 
 struct piece {
     std::size_t x0;
@@ -12,7 +14,7 @@ struct piece {
 };
 typedef struct piece piece;
 
-typedef std::array<std::array<bool, N>, N> grid;
+typedef std::array<std::array<std::size_t, N>, N> grid;
 
 struct board {
     grid height;
@@ -27,7 +29,7 @@ int rand_index(){
     int n = 0;
     do {
         n = rand();
-    } while (!(n < N));
+    } while (n <= discard);
     return n;
 }
 
@@ -47,9 +49,9 @@ piece rand_piece(){
     return {x0, y0, x1, y1};
 }
 
-void place(board &B, piece &p){
-    std::size_t z = max(B.height[p.x0][p.y0],
-                        B.height[p.x1][p.y1])+1;
+void place(board &B, piece p){
+    std::size_t z = std::max(B.height[p.x0][p.y0],
+                             B.height[p.x1][p.y1])+1;
     B.height[p.x0][p.y0] = z;
     B.height[p.x1][p.y1] = z;
     if (B.lower <= z && z < B.upper) {
@@ -57,13 +59,14 @@ void place(board &B, piece &p){
     }
 }
 
-void minz(board &B){
+std::size_t minz(board &B){
     std::size_t min_z = B.height[0][0];
     for(std::size_t i = 0; i < N; i++){
         for(std::size_t j = 0; j < N; j++){
-            min_z = min(B.height[i][j], min_z);
+            min_z = std::min(B.height[i][j], min_z);
         }
     }
+    return min_z;
 }
 
 void fill(board &B){
