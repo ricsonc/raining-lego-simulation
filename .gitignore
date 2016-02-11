@@ -1,0 +1,7 @@
+*~
+*.exe
+*.mk
+*.project
+*.txt
+Debug*
+Release*
