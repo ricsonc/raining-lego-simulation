@@ -8,4 +8,4 @@ The lego pieces rain down in any horizontal orientation at random, and stop eith
 
 As more and more legos accumulate, a sponge-like structure consisting of lego pieces and empty spaces is formed. One natural question is what the density of this structure is. 
 
-This is a numerical simulation of that model. 
+This is a numerical simulation of that model. The density is 0.3473184
