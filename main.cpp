@@ -72,7 +72,7 @@ std::size_t minz(board &B){
 
 void fill(board &B){
     while (minz(B) <= B.upper){
-        std::printf("%llu\n", minz(B));
+        std::printf("%lu\n", minz(B));
         for(std::size_t k = 0; k < N*N; k++){
             place(B, rand_piece());
         }
